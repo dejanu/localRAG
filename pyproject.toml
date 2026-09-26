@@ -1,0 +1,12 @@
+[project]
+name = "localrag"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = [
+    "anthropic>=1.8.0",
+    "chromadb>=1.5.9",
+    "pypdf>=6.19.0",
+    "requests>=2.34.2",
+]

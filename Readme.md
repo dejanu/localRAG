@@ -4,7 +4,7 @@ For Dynamic and Time-Sensitive Information: Daily financial reports, stock marke
 
 The info gathering flow is currently a manual batch loading proccess by adding data in `docs` folder
 
-⚠️ A RAG system makes the most sense for information that is highly specific, constantly changing, proprietary, or requires strict verification. 
+⚠️ A RAG system makes the most sense for information that is **highly specific, proprietary, or constantly changing**. 
 
 ### Components
 

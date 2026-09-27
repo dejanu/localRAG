@@ -23,7 +23,18 @@ uv add chromadb requests anthropic pypdf
 
 # use project as is: install dependencies and update pyproject.toml
 uv sync
+```
 
+On Apple Silicon, use **arm64** `uv` and **arm64** CPython (check with `file "$(which uv)"` and `file .venv/bin/python`). If you previously used x86_64 `uv`, it may have cached an x86_64 Python under `~/.local/share/uv/python/`; `uv sync` then fails on `onnxruntime` even after fixing `PATH`.
+
+```bash
+export PATH="$HOME/.local/bin:$PATH"   # arm64 uv from https://docs.astral.sh/uv/getting-started/installation/
+uv python install 3.14.7               # downloads macos-aarch64 if needed
+rm -rf .venv
+uv sync
+```
+
+```bash
 # cleanup uv project
 rm -f pyproject.toml .python-version main.py .gitignore
 rm -rf .venv

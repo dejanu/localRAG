@@ -1,10 +1,11 @@
 ## Local RAG pipeline
 
-For Dynamic and Time-Sensitive Information: Daily financial reports, stock market trends, or finance industry news updates 
+For Dynamic and Time-Sensitive Information: Daily financial reports, stock market trends, or finance industry news updates ([financial-news-dataset](https://github.com/Webhose/financial-news-dataset) source)
 
-The info gathering flow is currently a manual batch loading proccess by adding data in `docs` folder
+The info gathering flow is currently a manual batch loading proccess by adding data in `docs` folder. [RAG Tutorial: Ask Questions About Your Documents](https://medium.com/@dejanualex/rag-tutorial-ask-questions-about-your-documents-a537c9242523) article.
 
-⚠️ A RAG system makes the most sense for information that is **highly specific, proprietary, or constantly changing**. 
+⚠️ A RAG system makes the most sense for information that is **highly specific, proprietary, or constantly changing**
+
 
 ### Components
 
@@ -75,4 +76,3 @@ flowchart TB
   prompt --> llm["Anthropic claude-sonnet-4-6"]
   llm --> answer["Printed answer and sources"]
 ```
-

@@ -11,7 +11,7 @@ The info gathering flow is currently a manual batch loading proccess by adding d
 
 * Embeddings model: [nomic-embed-text embedding model from Ollama](https://ollama.com/library/nomic-embed-text-v2-moe)
 * Vector DB: [ChromaDB](https://docs.trychroma.com/docs/overview/introduction)
-* LLM (remote hosted Anthropic via API calls)
+* LLM: remote answer generation via Anthropic (`claude-sonnet-4-6`) or OpenAI (`gpt-5.6-sol`), selected by which API key is set
 
 
 ### Project setup for Python deps
@@ -19,7 +19,7 @@ The info gathering flow is currently a manual batch loading proccess by adding d
 ```bash
 # init project and add dependencies
 uv init --name localRAG --python 3.14
-uv add chromadb requests anthropic pypdf
+uv add chromadb requests anthropic openai pypdf
 
 # use project as is: install dependencies and update pyproject.toml
 uv sync
@@ -63,12 +63,15 @@ uv run check_db.py
 uv run ingest.py docs/
 ```
 
-* Start quering the knowledge base:
+* Start quering the knowledge base. Set exactly one API key:
 
 ```bash
 export ANTHROPIC_API_KEY=sk-ant-...
+# export OPENAI_API_KEY=sk-...
 uv run query.py "What does the knowledge base say about X?"
 ```
+
+If both `OPENAI_API_KEY` and `ANTHROPIC_API_KEY` are set, `query.py` exits with `Set only one of OPENAI_API_KEY or ANTHROPIC_API_KEY.`
 
 ### System diagram
 
@@ -84,6 +87,6 @@ flowchart TB
   chroma --> search
   search --> prompt["Prompt: question plus retrieved chunks and source paths"]
   question --> prompt
-  prompt --> llm["Anthropic claude-sonnet-4-6"]
+  prompt --> llm["Anthropic claude-sonnet-4-6 or OpenAI gpt-5.6-sol"]
   llm --> answer["Printed answer and sources"]
 ```

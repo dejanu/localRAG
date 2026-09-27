@@ -69,6 +69,7 @@ uv run ingest.py docs/
 export ANTHROPIC_API_KEY=sk-ant-...
 # export OPENAI_API_KEY=sk-...
 uv run query.py "What does the knowledge base say about X?"
+uv run query.py "How much did Swish raise, and who led the round?"
 ```
 
 If both `OPENAI_API_KEY` and `ANTHROPIC_API_KEY` are set, `query.py` exits with `Set only one of OPENAI_API_KEY or ANTHROPIC_API_KEY.`
